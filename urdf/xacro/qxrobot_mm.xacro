@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+
+<robot name="gen3_robotiq_2f_85" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- "" -->
+    <xacro:arg name="gripper" default="robotiq_2f_85" /> 
+    <xacro:arg name="sim" default="true" />
+    <xacro:arg name="vision" default="true" />
+    <xacro:arg name="gazebo" default="false" />
+    <xacro:arg name="prefix" default="" />
+
+    <xacro:macro name="load_robot" params="gripper dof vision sim prefix gazebo">
+            
+        <!-- Files to include -->
+        <xacro:include filename="$(find qxrobot_urdf_v1)/urdf/xacro/gen3_macro.xacro" />
+        <xacro:unless value="${not gripper}">
+            <xacro:include filename="$(find qxrobot_urdf_v1)/urdf/xacro/${gripper}_macro.xacro" />
+        </xacro:unless>
+        
+        <xacro:if value="${sim}">
+            <!-- Arm transmission elements-->
+            <xacro:include filename="$(find qxrobot_urdf_v1)/urdf/xacro/gen3_transmission_macro.xacro" />
+            <!-- Gripper transmission elements if there is a gripper-->
+            <xacro:unless value="${not gripper}">
+                <xacro:include filename="$(find qxrobot_urdf_v1)/urdf/xacro/${gripper}_transmission_macro.xacro" />
+            </xacro:unless>
+        </xacro:if>
+
+        <!-- Run the macros -->
+        <!-- For gazebo-->
+        <xacro:if value="${gazebo}">
+            <link name="world" />
+            <joint name="world_to_root" type="fixed">
+                <child link="${prefix}base_link" />
+                <parent link="world" />
+                <origin xyz="0 0 0" rpy="0 0 0" />    
+            </joint> 
+        </xacro:if>
+        
+        <!-- Load the arm -->
+        <xacro:load_arm parent="" dof="6" vision="${vision}" prefix="${prefix}">
+            <origin xyz="0 0 0" rpy="0 0 0"/> 
+        </xacro:load_arm>
+
+        <!-- Load the gripper -->
+        <xacro:unless value="${not gripper}">
+            <xacro:load_gripper parent="${prefix}${last_arm_link}"  prefix="${prefix}"/> 
+        </xacro:unless>
+        <!-- If no gripper, define tool frame here -->
+        <xacro:if value="${not gripper}">
+            <link name="${prefix}tool_frame"/>
+            <joint name="${prefix}tool_frame_joint" type="fixed">
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <parent link="${prefix}${last_arm_link}" />
+                <child link="${prefix}tool_frame" />
+                <axis xyz="0 0 0" />
+            </joint>
+        </xacro:if>
+
+        <!-- Load the Gazebo transmissions and gazebo_ros_control plugin -->
+        <xacro:if value="${sim}">
+
+            <xacro:load_gazebo_arm_transmissions prefix="${prefix}"/>
+
+            <xacro:unless value="${not gripper}">
+                <xacro:load_gazebo_gripper_transmissions prefix="${prefix}"/>
+            </xacro:unless>
+
+            <gazebo>
+                <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+                    <legacyModeNS>true</legacyModeNS>
+                </plugin>
+            </gazebo>
+
+        </xacro:if>
+    </xacro:macro>
+
+    <xacro:load_robot gripper="$(arg gripper)" dof="$(arg dof)" vision="$(arg vision)" sim="$(arg sim)" prefix="$(arg prefix)" gazebo="$(arg gazebo)" />
+    <xacro:include filename="$(find qxrobot_urdf_v1)/urdf/xacro/qxrobot_urdf_v1.xacro" />
+    <xacro:load_base/>
+
+    <joint name="base_footprint_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />        
+        <parent link="robot_link"/>
+        <child link="base_arm_link" />
+     </joint> 
+
+</robot>

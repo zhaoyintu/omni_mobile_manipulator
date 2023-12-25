@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="qxrobot_mm">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0107573806983678 -0.000121111379146382 0.168820068401291"
+        rpy="0 0 0" />
+      <mass
+        value="7.75262327008847" />
+      <inertia
+        ixx="0.0674364406464489"
+        ixy="2.6530001859869E-06"
+        ixz="-2.02885454828053E-06"
+        iyy="0.0607129183001536"
+        iyz="-2.82546028667119E-08"
+        izz="0.117886359812438" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="turn_front_left_link">
+    <inertial>
+      <origin
+        xyz="2.4774E-06 -4.2768E-06 -0.041346"
+        rpy="0 0 0" />
+      <mass
+        value="0.1509" />
+      <inertia
+        ixx="8.621E-05"
+        ixy="-2.6953E-09"
+        ixz="-8.1387E-10"
+        iyy="5.4519E-05"
+        iyz="1.5042E-09"
+        izz="6.6419E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/turn_front_left_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/turn_front_left_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="turn_front_left_link_joint"
+    type="continuous">
+    <origin
+      xyz="0.285 0.215 0.1705"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="turn_front_left_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-9999"
+      upper="9999"
+      effort="9999"
+      velocity="9999" />
+    <dynamics
+      friction="0.01" />
+  </joint>
+  <link
+    name="wheel_front_left_link">
+    <inertial>
+      <origin
+        xyz="-6.7203E-07 -0.0039185 1.1995E-07"
+        rpy="0 0 0" />
+      <mass
+        value="1.7978" />
+      <inertia
+        ixx="0.0022135"
+        ixy="1.588E-07"
+        ixz="2.5603E-08"
+        iyy="0.003666"
+        iyz="-1.0669E-08"
+        izz="0.0022134" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/wheel_front_left_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/wheel_front_left_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_front_left_link_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.0039 -0.101"
+      rpy="0 0 0" />
+    <parent
+      link="turn_front_left_link" />
+    <child
+      link="wheel_front_left_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-9999"
+      upper="9999"
+      effort="9999"
+      velocity="9999" />
+    <dynamics
+      friction="0.01" />
+  </joint>
+  <link
+    name="turn_front_right_link">
+    <inertial>
+      <origin
+        xyz="-2.4774E-06 4.2768E-06 -0.041346"
+        rpy="0 0 0" />
+      <mass
+        value="0.1509" />
+      <inertia
+        ixx="8.621E-05"
+        ixy="-2.6953E-09"
+        ixz="8.1387E-10"
+        iyy="5.4519E-05"
+        iyz="-1.5042E-09"
+        izz="6.6419E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/turn_front_right_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/turn_front_right_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="turn_front_right_link_joint"
+    type="continuous">
+    <origin
+      xyz="0.285 -0.215 0.1705"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="turn_front_right_link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-9999"
+      upper="9999"
+      effort="9999"
+      velocity="9999" />
+    <dynamics
+      friction="0.01" />
+  </joint>
+  <link
+    name="wheel_front_right_link">
+    <inertial>
+      <origin
+        xyz="6.7203E-07 0.0039185 1.1995E-07"
+        rpy="0 0 0" />
+      <mass
+        value="1.7978" />
+      <inertia
+        ixx="0.0022135"
+        ixy="1.588E-07"
+        ixz="-2.5603E-08"
+        iyy="0.003666"
+        iyz="1.0669E-08"
+        izz="0.0022134" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/wheel_front_right_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/wheel_front_right_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_front_right_link_joint"
+    type="continuous">
+    <origin
+      xyz="0 -0.0039 -0.101"
+      rpy="0 0 0" />
+    <parent
+      link="turn_front_right_link" />
+    <child
+      link="wheel_front_right_link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-9999"
+      upper="9999"
+      effort="9999"
+      velocity="9999" />
+    <dynamics
+      friction="0.01" />
+  </joint>
+  <link
+    name="turn_back_left_link">
+    <inertial>
+      <origin
+        xyz="2.47739936293234E-06 -0.00390427681696906 0.0596537478356015"
+        rpy="0 0 0" />
+      <mass
+        value="0.150899435444674" />
+      <inertia
+        ixx="8.62104557625573E-05"
+        ixy="-2.69534706876987E-09"
+        ixz="-8.13867681148677E-10"
+        iyy="5.45191084176943E-05"
+        iyz="1.50418273401286E-09"
+        izz="6.64192852433824E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/turn_back_left_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/turn_back_left_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="turn_back_left_link_joint"
+    type="continuous">
+    <origin
+      xyz="-0.285 0.2189 0.0695"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="turn_back_left_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-9999"
+      upper="9999"
+      effort="9999"
+      velocity="9999" />
+    <dynamics
+      friction="0.01" />
+  </joint>
+  <link
+    name="wheel_back_left_link">
+    <inertial>
+      <origin
+        xyz="-6.7203E-07 -0.0039185 1.1995E-07"
+        rpy="0 0 0" />
+      <mass
+        value="1.7978" />
+      <inertia
+        ixx="0.0022135"
+        ixy="1.588E-07"
+        ixz="2.5603E-08"
+        iyy="0.003666"
+        iyz="-1.0669E-08"
+        izz="0.0022134" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/wheel_back_left_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/wheel_back_left_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_back_left_link_joint"
+    type="continuous">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="turn_back_left_link" />
+    <child
+      link="wheel_back_left_link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-9999"
+      upper="9999"
+      effort="9999"
+      velocity="9999" />
+    <dynamics
+      friction="0.01" />
+  </joint>
+  <link
+    name="turn_back_right_link">
+    <inertial>
+      <origin
+        xyz="-2.4774E-06 4.2768E-06 -0.041346"
+        rpy="0 0 0" />
+      <mass
+        value="0.1509" />
+      <inertia
+        ixx="8.621E-05"
+        ixy="-2.6953E-09"
+        ixz="8.1387E-10"
+        iyy="5.4519E-05"
+        iyz="-1.5042E-09"
+        izz="6.6419E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/turn_back_right_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/turn_back_right_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="turn_back_right_link_joint"
+    type="continuous">
+    <origin
+      xyz="-0.285 -0.215 0.1705"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="turn_back_right_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-9999"
+      upper="9999"
+      effort="9999"
+      velocity="9999" />
+    <dynamics
+      friction="0.01" />
+  </joint>
+  <link
+    name="wheel_back_right_link">
+    <inertial>
+      <origin
+        xyz="6.7203E-07 0.0039185 1.1995E-07"
+        rpy="0 0 0" />
+      <mass
+        value="1.7978" />
+      <inertia
+        ixx="0.0022135"
+        ixy="1.588E-07"
+        ixz="-2.5603E-08"
+        iyy="0.003666"
+        iyz="1.0669E-08"
+        izz="0.0022134" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/wheel_back_right_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/wheel_back_right_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_back_right_link_joint"
+    type="continuous">
+    <origin
+      xyz="0 -0.0039 -0.101"
+      rpy="0 0 0" />
+    <parent
+      link="turn_back_right_link" />
+    <child
+      link="wheel_back_right_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-9999"
+      upper="9999"
+      effort="9999"
+      velocity="9999" />
+  </joint>
+  <link
+    name="camera_front_link">
+    <inertial>
+      <origin
+        xyz="-0.0046595 0.00026537 3.6317E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.018758" />
+      <inertia
+        ixx="1.3987E-05"
+        ixy="-4.7593E-09"
+        ixz="1.2059E-08"
+        iyy="1.7467E-06"
+        iyz="-1.0206E-08"
+        izz="1.3253E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/camera_front_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/camera_front_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_front_llink_joint"
+    type="fixed">
+    <origin
+      xyz="0.36265 0 0.2925"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera_front_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="camera_back_link">
+    <inertial>
+      <origin
+        xyz="0.0037648 3.8069E-05 2.4949E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.059314" />
+      <inertia
+        ixx="7.025E-06"
+        ixy="3.9072E-08"
+        ixz="-1.1912E-08"
+        iyy="1.2549E-05"
+        iyz="-3.1998E-08"
+        izz="1.2542E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/camera_back_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/camera_back_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_back_llink_joint"
+    type="fixed">
+    <origin
+      xyz="-0.33 0 0.305"
+      rpy="0 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera_back_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="imu_link">
+    <inertial>
+      <origin
+        xyz="-2.2669510901796E-07 6.98733953790323E-05 0.00409243345535182"
+        rpy="0 0 0" />
+      <mass
+        value="0.0188120969371347" />
+      <inertia
+        ixx="2.19917722590059E-06"
+        ixy="-1.80548375294379E-13"
+        ixz="3.35094597271515E-11"
+        iyy="2.54598735456485E-06"
+        iyz="-1.1731328952741E-09"
+        izz="4.02133166732051E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/imu_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/imu_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="imu_link_joint"
+    type="fixed">
+    <origin
+      xyz="-0.315 0 0.3275"
+      rpy="0 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="imu_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="laser_link">
+    <inertial>
+      <origin
+        xyz="-0.00020425 6.2464E-06 -0.032986"
+        rpy="0 0 0" />
+      <mass
+        value="0.2218" />
+      <inertia
+        ixx="0.00021546"
+        ixy="-5.4119E-10"
+        ixz="-6.7808E-08"
+        iyy="0.00021361"
+        iyz="1.1157E-08"
+        izz="0.00033669" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/laser_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://qxrobot_urdf_v1/meshes/laser_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="laser_link_joint"
+    type="fixed">
+    <origin
+      xyz="-0.315 0 0.413"
+      rpy="0 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="laser_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="robot_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+  </link>
+  <joint
+    name="robot_link_joint"
+    type="fixed">
+    <origin
+      xyz="0.282499999999994 0 0.274499999999996"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="robot_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link name="arm_base_link">
+    <inertial>
+      <origin xyz="-0.000648 -0.000166 0.084487" rpy="0 0 0" />
+      <mass value="1.697" />
+      <inertia ixx="0.004622" ixy="9E-06" ixz="6E-05" iyy="0.004495" iyz="9E-06" izz="0.002079" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="shoulder_link">
+    <inertial>
+      <origin xyz="-2.3E-05 -0.010364 -0.07336" rpy="0 0 0" />
+      <mass value="1.377" />
+      <inertia ixx="0.00457" ixy="1E-06" ixz="2E-06" iyy="0.004831" iyz="0.000448" izz="0.001409" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/shoulder_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/shoulder_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_1" type="continuous">
+    <origin xyz="0 0 0.15643" rpy="-3.1416 0 0" />
+    <parent link="arm_base_link" />
+    <child link="shoulder_link" />
+    <axis xyz="0 0 1" />
+    <limit effort="39" velocity="1.3963" />
+  </joint>
+  <link name="bicep_link">
+    <inertial>
+      <origin xyz="3.5E-05 -0.208207 -0.01889" rpy="0 0 0" />
+      <mass value="1.262" />
+      <inertia ixx="0.046752" ixy="-9E-06" ixz="0" iyy="0.00085" iyz="-9.8E-05" izz="0.047188" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/bicep_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/bicep_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_2" type="revolute">
+    <origin xyz="0 0.005375 -0.12838" rpy="1.5708 0 0" />
+    <parent link="shoulder_link" />
+    <child link="bicep_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.24" upper="2.24" effort="39" velocity="1.3963" />
+  </joint>
+  <link name="forearm_link">
+    <inertial>
+      <origin xyz="1.8E-05 0.076168 -0.01397" rpy="0 0 0" />
+      <mass value="0.93" />
+      <inertia ixx="0.008292" ixy="-1E-06" ixz="0" iyy="0.000628" iyz="0.000432" izz="0.008464" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/forearm_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/forearm_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_3" type="revolute">
+    <origin xyz="0 -0.41 0" rpy="3.1416 0 0" />
+    <parent link="bicep_link" />
+    <child link="forearm_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.57" upper="2.57" effort="39" velocity="1.3963" />
+  </joint>
+  <link name="spherical_wrist_1_link">
+    <inertial>
+      <origin xyz="-1E-06 0.008486 -0.062937" rpy="0 0 0" />
+      <mass value="0.678" />
+      <inertia ixx="0.001645" ixy="0" ixz="0" iyy="0.001666" iyz="-0.000234" izz="0.000389" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/spherical_wrist_1_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/spherical_wrist_1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_4" type="continuous">
+    <origin xyz="0 0.20843 -0.006375" rpy="1.5708 0 0" />
+    <parent link="forearm_link" />
+    <child link="spherical_wrist_1_link" />
+    <axis xyz="0 0 1" />
+    <limit effort="9" velocity="1.2218" />
+  </joint>
+  <link name="spherical_wrist_2_link">
+    <inertial>
+      <origin xyz="-1E-06 0.046429 -0.008704" rpy="0 0 0" />
+      <mass value="0.678" />
+      <inertia ixx="0.001685" ixy="0" ixz="0" iyy="0.0004" iyz="0.000255" izz="0.001696" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/spherical_wrist_2_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/spherical_wrist_2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_5" type="revolute">
+    <origin xyz="0 -0.00017505 -0.10593" rpy="-1.5708 0 0" />
+    <parent link="spherical_wrist_1_link" />
+    <child link="spherical_wrist_2_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.09" upper="2.09" effort="9" velocity="1.2218" />
+  </joint>
+  <link name="bracelet_link">
+    <inertial>
+      <origin xyz="-9.3E-05 0.000132 -0.022905" rpy="0 0 0" />
+      <mass value="0.364" />
+      <inertia ixx="0.000214" ixy="0" ixz="1E-06" iyy="0.000223" iyz="-2E-06" izz="0.00024" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/bracelet_no_vision_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/bracelet_no_vision_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_6" type="continuous">
+    <origin xyz="0 0.10593 -0.00017505" rpy="1.5708 0 0" />
+    <parent link="spherical_wrist_2_link" />
+    <child link="bracelet_link" />
+    <axis xyz="0 0 1" />
+    <limit effort="9" velocity="1.2218" />
+  </joint>
+  <link name="end_effector_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0" />
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+    </inertial>
+  </link>
+  <joint name="end_effector" type="fixed">
+    <origin xyz="0 0 -0.061525" rpy="3.1416 0 -3.1416" />
+    <parent link="bracelet_link" />
+    <child link="end_effector_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+  
+  <joint
+    name="arm_joint"
+    type="fixed">
+    <origin
+      xyz="0.0 0 0.0"
+      rpy="0 0 0" />
+    <parent
+      link="robot_link" />
+    <child
+      link="arm_base_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  
+</robot>
