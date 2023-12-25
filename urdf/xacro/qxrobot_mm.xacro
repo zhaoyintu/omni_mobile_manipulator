@@ -12,17 +12,17 @@
     <xacro:macro name="load_robot" params="gripper dof vision sim prefix gazebo">
             
         <!-- Files to include -->
-        <xacro:include filename="$(find qxrobot_urdf_v1)/urdf/xacro/gen3_macro.xacro" />
+        <xacro:include filename="$(find omni_mobile_manipulator)/urdf/xacro/gen3_macro.xacro" />
         <xacro:unless value="${not gripper}">
-            <xacro:include filename="$(find qxrobot_urdf_v1)/urdf/xacro/${gripper}_macro.xacro" />
+            <xacro:include filename="$(find omni_mobile_manipulator)/urdf/xacro/${gripper}_macro.xacro" />
         </xacro:unless>
         
         <xacro:if value="${sim}">
             <!-- Arm transmission elements-->
-            <xacro:include filename="$(find qxrobot_urdf_v1)/urdf/xacro/gen3_transmission_macro.xacro" />
+            <xacro:include filename="$(find omni_mobile_manipulator)/urdf/xacro/gen3_transmission_macro.xacro" />
             <!-- Gripper transmission elements if there is a gripper-->
             <xacro:unless value="${not gripper}">
-                <xacro:include filename="$(find qxrobot_urdf_v1)/urdf/xacro/${gripper}_transmission_macro.xacro" />
+                <xacro:include filename="$(find omni_mobile_manipulator)/urdf/xacro/${gripper}_transmission_macro.xacro" />
             </xacro:unless>
         </xacro:if>
 
@@ -76,7 +76,7 @@
     </xacro:macro>
 
     <xacro:load_robot gripper="$(arg gripper)" dof="$(arg dof)" vision="$(arg vision)" sim="$(arg sim)" prefix="$(arg prefix)" gazebo="$(arg gazebo)" />
-    <xacro:include filename="$(find qxrobot_urdf_v1)/urdf/xacro/qxrobot_urdf_v1.xacro" />
+    <xacro:include filename="$(find omni_mobile_manipulator)/urdf/xacro/omni_mobile_manipulator.xacro" />
     <xacro:load_base/>
 
     <joint name="base_footprint_joint" type="fixed">

@@ -3,6 +3,14 @@
      Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot name="qxrobot_mm">
+  <!-- Base link -->
+  <link name="base"/>
+  <!-- Fixed joint to add dummy inertia link -->
+  <joint name="world_to_base_link" type="fixed">
+    <parent link="base"/>
+    <child link="base_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
   <link
     name="base_link">
     <inertial>
@@ -25,7 +33,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/base_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -39,7 +47,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/base_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -65,7 +73,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_front_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_front_left_link.STL" />
       </geometry>
       <material
         name="">
@@ -79,30 +87,18 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_front_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_front_left_link.STL" />
       </geometry>
     </collision>
   </link>
-  <joint
-    name="turn_front_left_link_joint"
-    type="continuous">
-    <origin
-      xyz="0.285 0.215 0.1705"
-      rpy="0 0 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="turn_front_left_link" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="-9999"
-      upper="9999"
-      effort="9999"
-      velocity="9999" />
-    <dynamics
-      friction="0.01" />
-  </joint>
+<joint name="turn_front_left_link_joint" type="revolute">
+  <origin xyz="0.285 0.215 0.1705" rpy="0 0 0" />
+  <parent link="base_link" />
+  <child link="turn_front_left_link" />
+  <axis xyz="0 0 1" />
+  <limit effort="150.0" lower="-3.14" upper="3.14" velocity="1.3963"/>
+  <dynamics friction="0.01" />
+</joint>
   <link
     name="wheel_front_left_link">
     <inertial>
@@ -125,7 +121,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_front_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_front_left_link.STL" />
       </geometry>
       <material
         name="">
@@ -139,29 +135,14 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_front_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_front_left_link.STL" />
       </geometry>
     </collision>
   </link>
-  <joint
-    name="wheel_front_left_link_joint"
-    type="continuous">
-    <origin
-      xyz="0 0.0039 -0.101"
-      rpy="0 0 0" />
-    <parent
-      link="turn_front_left_link" />
-    <child
-      link="wheel_front_left_link" />
-    <axis
-      xyz="0 1 0" />
-    <limit
-      lower="-9999"
-      upper="9999"
-      effort="9999"
-      velocity="9999" />
-    <dynamics
-      friction="0.01" />
+  <joint name="wheel_front_left_link_joint" type="fixed">
+    <origin xyz="0 0.0039 -0.101" rpy="0 0 0" />
+    <parent link="turn_front_left_link" />
+    <child link="wheel_front_left_link" />
   </joint>
   <link
     name="turn_front_right_link">
@@ -185,7 +166,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_front_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_front_right_link.STL" />
       </geometry>
       <material
         name="">
@@ -199,13 +180,13 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_front_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_front_right_link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
     name="turn_front_right_link_joint"
-    type="continuous">
+    type="fixed">
     <origin
       xyz="0.285 -0.215 0.1705"
       rpy="0 0 0" />
@@ -213,15 +194,6 @@
       link="base_link" />
     <child
       link="turn_front_right_link" />
-    <axis
-      xyz="0 -1 0" />
-    <limit
-      lower="-9999"
-      upper="9999"
-      effort="9999"
-      velocity="9999" />
-    <dynamics
-      friction="0.01" />
   </joint>
   <link
     name="wheel_front_right_link">
@@ -245,7 +217,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_front_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_front_right_link.STL" />
       </geometry>
       <material
         name="">
@@ -259,13 +231,13 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_front_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_front_right_link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
     name="wheel_front_right_link_joint"
-    type="continuous">
+    type="fixed">
     <origin
       xyz="0 -0.0039 -0.101"
       rpy="0 0 0" />
@@ -273,15 +245,6 @@
       link="turn_front_right_link" />
     <child
       link="wheel_front_right_link" />
-    <axis
-      xyz="0 -1 0" />
-    <limit
-      lower="-9999"
-      upper="9999"
-      effort="9999"
-      velocity="9999" />
-    <dynamics
-      friction="0.01" />
   </joint>
   <link
     name="turn_back_left_link">
@@ -305,7 +268,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_back_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_back_left_link.STL" />
       </geometry>
       <material
         name="">
@@ -319,13 +282,13 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_back_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_back_left_link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
     name="turn_back_left_link_joint"
-    type="continuous">
+    type="fixed">
     <origin
       xyz="-0.285 0.2189 0.0695"
       rpy="0 0 0" />
@@ -333,15 +296,6 @@
       link="base_link" />
     <child
       link="turn_back_left_link" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="-9999"
-      upper="9999"
-      effort="9999"
-      velocity="9999" />
-    <dynamics
-      friction="0.01" />
   </joint>
   <link
     name="wheel_back_left_link">
@@ -365,7 +319,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_back_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_back_left_link.STL" />
       </geometry>
       <material
         name="">
@@ -379,13 +333,13 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_back_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_back_left_link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
     name="wheel_back_left_link_joint"
-    type="continuous">
+    type="fixed">
     <origin
       xyz="0 0 0"
       rpy="0 0 0" />
@@ -393,15 +347,6 @@
       link="turn_back_left_link" />
     <child
       link="wheel_back_left_link" />
-    <axis
-      xyz="0 -1 0" />
-    <limit
-      lower="-9999"
-      upper="9999"
-      effort="9999"
-      velocity="9999" />
-    <dynamics
-      friction="0.01" />
   </joint>
   <link
     name="turn_back_right_link">
@@ -425,7 +370,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_back_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_back_right_link.STL" />
       </geometry>
       <material
         name="">
@@ -439,13 +384,13 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_back_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_back_right_link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
     name="turn_back_right_link_joint"
-    type="continuous">
+    type="fixed">
     <origin
       xyz="-0.285 -0.215 0.1705"
       rpy="0 0 0" />
@@ -453,15 +398,6 @@
       link="base_link" />
     <child
       link="turn_back_right_link" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="-9999"
-      upper="9999"
-      effort="9999"
-      velocity="9999" />
-    <dynamics
-      friction="0.01" />
   </joint>
   <link
     name="wheel_back_right_link">
@@ -485,7 +421,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_back_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_back_right_link.STL" />
       </geometry>
       <material
         name="">
@@ -499,13 +435,13 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_back_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_back_right_link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
     name="wheel_back_right_link_joint"
-    type="continuous">
+    type="fixed">
     <origin
       xyz="0 -0.0039 -0.101"
       rpy="0 0 0" />
@@ -513,13 +449,6 @@
       link="turn_back_right_link" />
     <child
       link="wheel_back_right_link" />
-    <axis
-      xyz="0 1 0" />
-    <limit
-      lower="-9999"
-      upper="9999"
-      effort="9999"
-      velocity="9999" />
   </joint>
   <link
     name="camera_front_link">
@@ -543,7 +472,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/camera_front_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/camera_front_link.STL" />
       </geometry>
       <material
         name="">
@@ -557,7 +486,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/camera_front_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/camera_front_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -596,7 +525,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/camera_back_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/camera_back_link.STL" />
       </geometry>
       <material
         name="">
@@ -610,7 +539,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/camera_back_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/camera_back_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -649,7 +578,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/imu_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/imu_link.STL" />
       </geometry>
       <material
         name="">
@@ -663,7 +592,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/imu_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/imu_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -702,7 +631,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/laser_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/laser_link.STL" />
       </geometry>
       <material
         name="">
@@ -716,7 +645,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/laser_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/laser_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -772,7 +701,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/base_link.STL" />
+        <mesh filename="package://omni_mobile_manipulator/meshes/jaco/base_link.STL" />
       </geometry>
       <material name="">
         <color rgba="0.75294 0.75294 0.75294 1" />
@@ -781,7 +710,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/base_link.STL" />
+        <mesh filename="package://omni_mobile_manipulator/meshes/jaco/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -794,7 +723,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/shoulder_link.STL" />
+        <mesh filename="package://omni_mobile_manipulator/meshes/jaco/shoulder_link.STL" />
       </geometry>
       <material name="">
         <color rgba="0.75294 0.75294 0.75294 1" />
@@ -803,11 +732,11 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/shoulder_link.STL" />
+        <mesh filename="package://omni_mobile_manipulator/meshes/jaco/shoulder_link.STL" />
       </geometry>
     </collision>
   </link>
-  <joint name="joint_1" type="continuous">
+  <joint name="joint_1" type="revolute">
     <origin xyz="0 0 0.15643" rpy="-3.1416 0 0" />
     <parent link="arm_base_link" />
     <child link="shoulder_link" />
@@ -823,7 +752,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/bicep_link.STL" />
+        <mesh filename="package://omni_mobile_manipulator/meshes/jaco/bicep_link.STL" />
       </geometry>
       <material name="">
         <color rgba="0.75294 0.75294 0.75294 1" />
@@ -832,7 +761,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/bicep_link.STL" />
+        <mesh filename="package://omni_mobile_manipulator/meshes/jaco/bicep_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -852,7 +781,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/forearm_link.STL" />
+        <mesh filename="package://omni_mobile_manipulator/meshes/jaco/forearm_link.STL" />
       </geometry>
       <material name="">
         <color rgba="0.75294 0.75294 0.75294 1" />
@@ -861,7 +790,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/forearm_link.STL" />
+        <mesh filename="package://omni_mobile_manipulator/meshes/jaco/forearm_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -881,7 +810,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/spherical_wrist_1_link.STL" />
+        <mesh filename="package://omni_mobile_manipulator/meshes/jaco/spherical_wrist_1_link.STL" />
       </geometry>
       <material name="">
         <color rgba="0.75294 0.75294 0.75294 1" />
@@ -890,11 +819,11 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/spherical_wrist_1_link.STL" />
+        <mesh filename="package://omni_mobile_manipulator/meshes/jaco/spherical_wrist_1_link.STL" />
       </geometry>
     </collision>
   </link>
-  <joint name="joint_4" type="continuous">
+  <joint name="joint_4" type="revolute">
     <origin xyz="0 0.20843 -0.006375" rpy="1.5708 0 0" />
     <parent link="forearm_link" />
     <child link="spherical_wrist_1_link" />
@@ -910,7 +839,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/spherical_wrist_2_link.STL" />
+        <mesh filename="package://omni_mobile_manipulator/meshes/jaco/spherical_wrist_2_link.STL" />
       </geometry>
       <material name="">
         <color rgba="0.75294 0.75294 0.75294 1" />
@@ -919,7 +848,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/spherical_wrist_2_link.STL" />
+        <mesh filename="package://omni_mobile_manipulator/meshes/jaco/spherical_wrist_2_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -939,7 +868,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/bracelet_no_vision_link.STL" />
+        <mesh filename="package://omni_mobile_manipulator/meshes/jaco/bracelet_no_vision_link.STL" />
       </geometry>
       <material name="">
         <color rgba="0.75294 0.75294 0.75294 1" />
@@ -948,11 +877,11 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://qxrobot_urdf_v1/meshes/jaco/bracelet_no_vision_link.STL" />
+        <mesh filename="package://omni_mobile_manipulator/meshes/jaco/bracelet_no_vision_link.STL" />
       </geometry>
     </collision>
   </link>
-  <joint name="joint_6" type="continuous">
+  <joint name="joint_6" type="revolute">
     <origin xyz="0 0.10593 -0.00017505" rpy="1.5708 0 0" />
     <parent link="spherical_wrist_2_link" />
     <child link="bracelet_link" />
@@ -977,7 +906,7 @@
     name="arm_joint"
     type="fixed">
     <origin
-      xyz="0.0 0 0.0"
+      xyz="0.0 0.0 0.0"
       rpy="0 0 0" />
     <parent
       link="robot_link" />

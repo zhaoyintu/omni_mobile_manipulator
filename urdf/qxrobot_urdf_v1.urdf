@@ -2,7 +2,7 @@
 <!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
      Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot name="qxrobot_urdf_v1">
+<robot name="omni_mobile_manipulator">
   <link name="base_link">
     <inertial>
       <origin
@@ -24,7 +24,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/base_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -38,7 +38,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/base_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -64,7 +64,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_front_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_front_left_link.STL" />
       </geometry>
       <material
         name="">
@@ -78,7 +78,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_front_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_front_left_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -124,7 +124,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_front_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_front_left_link.STL" />
       </geometry>
       <material
         name="">
@@ -138,7 +138,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_front_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_front_left_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -184,7 +184,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_front_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_front_right_link.STL" />
       </geometry>
       <material
         name="">
@@ -198,7 +198,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_front_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_front_right_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -244,7 +244,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_front_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_front_right_link.STL" />
       </geometry>
       <material
         name="">
@@ -258,7 +258,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_front_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_front_right_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -304,7 +304,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_back_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_back_left_link.STL" />
       </geometry>
       <material
         name="">
@@ -318,7 +318,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_back_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_back_left_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -364,7 +364,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_back_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_back_left_link.STL" />
       </geometry>
       <material
         name="">
@@ -378,7 +378,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_back_left_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_back_left_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -424,7 +424,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_back_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_back_right_link.STL" />
       </geometry>
       <material
         name="">
@@ -438,7 +438,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/turn_back_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/turn_back_right_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -484,7 +484,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_back_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_back_right_link.STL" />
       </geometry>
       <material
         name="">
@@ -498,7 +498,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/wheel_back_right_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/wheel_back_right_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -542,7 +542,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/camera_front_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/camera_front_link.STL" />
       </geometry>
       <material
         name="">
@@ -556,7 +556,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/camera_front_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/camera_front_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -595,7 +595,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/camera_back_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/camera_back_link.STL" />
       </geometry>
       <material
         name="">
@@ -609,7 +609,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/camera_back_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/camera_back_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -648,7 +648,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/imu_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/imu_link.STL" />
       </geometry>
       <material
         name="">
@@ -662,7 +662,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/imu_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/imu_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -701,7 +701,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/laser_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/laser_link.STL" />
       </geometry>
       <material
         name="">
@@ -715,7 +715,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://qxrobot_urdf_v1/meshes/laser_link.STL" />
+          filename="package://omni_mobile_manipulator/meshes/laser_link.STL" />
       </geometry>
     </collision>
   </link>
