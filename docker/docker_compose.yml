@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  mobile_manipulator:
+    image: omni_mobile_manipulator:latest
+    container_name: mobile_manipulator
+    runtime: nvidia
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - ~/mobile_manipulator_workspace:/root/mobile_manipulator_workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    ports:
+      - "8888:22"
+    stdin_open: true
+    tty: true
