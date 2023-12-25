@@ -1,0 +1,6 @@
+*.log
+*.pyc
+
+# ignore
+auto_generated/
+build/
