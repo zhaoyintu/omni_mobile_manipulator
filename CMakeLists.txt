@@ -21,7 +21,6 @@ set(CATKIN_PACKAGE_DEPENDENCIES
   ocs2_pinocchio_interface
   ocs2_self_collision
   ocs2_self_collision_visualization
-  ocs2_mobile_manipulator
 )
 
 find_package(catkin REQUIRED COMPONENTS
@@ -61,7 +60,7 @@ set(FLAGS
   ${OCS2_CXX_FLAGS}
   ${pinocchio_CFLAGS_OTHER}
   -Wno-ignored-attributes
-  -Wno-invalid-partial-specialization   # to silence warning with unsupported Eigen Tensor
+  -Wno-invalid-partial-specialization
   -DPINOCCHIO_URDFDOM_TYPEDEF_SHARED_PTR
   -DPINOCCHIO_URDFDOM_USE_STD_SHARED_PTR
 )
@@ -78,19 +77,105 @@ link_directories(
   ${pinocchio_LIBRARY_DIRS}
 )
 
+# omni_mobile_manipulator library
+add_library(omni_mobile_manipulator
+  src/FactoryFunctions.cpp
+  src/MobileManipulatorInterface.cpp
+  src/MobileManipulatorPinocchioMapping.cpp
+  src/MobileManipulatorPreComputation.cpp
+  src/constraint/EndEffectorConstraint.cpp
+  src/dynamics/OmniWheelBasedMobileManipulatorDynamics.cpp
+)
+
+
 # MPC node
+add_executable(mobile_manipulator_mpc_node
+  src/ros/MobileManipulatorMpcNode.cpp
+)
+add_dependencies(mobile_manipulator_mpc_node
+  ${catkin_EXPORTED_TARGETS}
+)
+target_link_libraries(mobile_manipulator_mpc_node
+  omni_mobile_manipulator
+  ${catkin_LIBRARIES}
+)
+target_compile_options(mobile_manipulator_mpc_node PUBLIC ${FLAGS})
+
+# DistanceVisualization node
+add_executable(mobile_manipulator_distance_visualization
+  src/ros/MobileManipulatorDistanceVisualization.cpp
+)
+add_dependencies(mobile_manipulator_distance_visualization
+  ${catkin_EXPORTED_TARGETS}
+)
+target_link_libraries(mobile_manipulator_distance_visualization
+  omni_mobile_manipulator
+  ${catkin_LIBRARIES}
+)
+target_compile_options(mobile_manipulator_distance_visualization PUBLIC ${FLAGS})
+
+# Dummy node
+add_executable(mobile_manipulator_dummy_mrt_node
+  src/ros/MobileManipulatorDummyMRT.cpp
+  src/ros/MobileManipulatorDummyVisualization.cpp
+)
+add_dependencies(mobile_manipulator_dummy_mrt_node
+  ${catkin_EXPORTED_TARGETS}
+)
+target_link_libraries(mobile_manipulator_dummy_mrt_node
+  omni_mobile_manipulator
+  ${catkin_LIBRARIES}
+)
+target_compile_options(mobile_manipulator_dummy_mrt_node PUBLIC ${FLAGS})
 
 # Target node
+add_executable(mobile_manipulator_target
+  src/ros/MobileManipulatorTarget.cpp
+)
+add_dependencies(mobile_manipulator_target
+  ${catkin_EXPORTED_TARGETS}
+)
+target_link_libraries(mobile_manipulator_target
+  omni_mobile_manipulator 
+  ${catkin_LIBRARIES}
+)
+target_compile_options(mobile_manipulator_target PUBLIC ${FLAGS})
 
+####################
+## Clang tooling ###
+####################
+
+find_package(cmake_clang_tools QUIET)
+if (cmake_clang_tools_FOUND)
+  message(STATUS "Run clang tooling")
+  add_clang_tooling(
+    TARGETS omni_mobile_manipulator mobile_manipulator_mpc_node # ... other targets ...
+    SOURCE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/src ${CMAKE_CURRENT_SOURCE_DIR}/include
+    CT_HEADER_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include
+    CF_WERROR
+  )
+endif()
 
 #############
 ## Install ##
 #############
 
+# Installation commands combining both projects
 install(DIRECTORY include/${PROJECT_NAME}/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
-
+install(
+  TARGETS 
+    mobile_manipulator_mpc_node 
+    mobile_manipulator_distance_visualization
+    mobile_manipulator_dummy_mrt_node 
+    mobile_manipulator_target
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 install(DIRECTORY launch rviz
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
+
+#############
+## Testing ##
+#############
