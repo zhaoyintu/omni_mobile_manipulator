@@ -1,4 +1,4 @@
-# Omni Mobile Manipulator Repository
+# Omni Mobile Manipulator
 
 ## Introduction
 This README provides instructions on how to set up and run the `omni_mobile_manipulator` repository in a ROS workspace.
@@ -6,7 +6,7 @@ This README provides instructions on how to set up and run the `omni_mobile_mani
 ## Cloning the Repository
 To clone the repository to the ROS workspace `~/mobile_manipulator_workspace/src`, use the following command:
 ```
-git clone git@github.com:zhaoyintu/omni_mobile_manipulator.git ~/
+git clone git@github.com:zhaoyintu/omni_mobile_manipulator.git
 ```
 
 ## Building the Docker Container
@@ -20,6 +20,12 @@ cd ~/mobile_manipulator_workspace/src/omni_mobile_manipulator
 Use Docker Compose to start the Docker container:
 ```
 ./start_docker.sh
+```
+
+## Enable xservice forward
+In another terminal
+```
+xhost +
 ```
 
 ## Accessing the Docker Container
@@ -38,5 +44,6 @@ catkin build
 ## Running the Code
 To run the `omni_mobile_manipulator`, use the launch command:
 ```
+source ~/mobile_manipulator_workspace/devel/setup.bash
 roslaunch omni_mobile_manipulator omni_mobile_manipulator.launch
 ```
