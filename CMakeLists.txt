@@ -141,6 +141,19 @@ target_link_libraries(mobile_manipulator_target
 )
 target_compile_options(mobile_manipulator_target PUBLIC ${FLAGS})
 
+# Pose pub node
+add_executable(mobile_manipulator_pose_pub
+  src/ros/PoseToTargetTrajectoriesPublisher.cpp
+)
+add_dependencies(mobile_manipulator_pose_pub
+  ${catkin_EXPORTED_TARGETS}
+)
+target_link_libraries(mobile_manipulator_pose_pub
+  omni_mobile_manipulator 
+  ${catkin_LIBRARIES}
+)
+target_compile_options(mobile_manipulator_pose_pub PUBLIC ${FLAGS})
+
 ####################
 ## Clang tooling ###
 ####################
@@ -170,6 +183,7 @@ install(
     mobile_manipulator_distance_visualization
     mobile_manipulator_dummy_mrt_node 
     mobile_manipulator_target
+    mobile_manipulator_pose_pub
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 install(DIRECTORY launch rviz

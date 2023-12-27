@@ -37,7 +37,7 @@ docker exec -it mobile_manipulator bash
 ## Building the Code
 Inside the Docker container, build the code with the following commands:
 ```
-cd ~/omni_mobile_manipulator
+cd ~/mobile_manipulator_workspace
 catkin build
 ```
 
