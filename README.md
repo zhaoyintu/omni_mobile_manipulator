@@ -47,3 +47,8 @@ To run the `omni_mobile_manipulator`, use the launch command:
 source ~/mobile_manipulator_workspace/devel/setup.bash
 roslaunch omni_mobile_manipulator omni_mobile_manipulator.launch
 ```
+
+To send pose:
+```
+rosrun omni_mobile_manipulator mobile_manipulator_pose_pub position 1 0 1 orientation 1 0 0 0
+```
