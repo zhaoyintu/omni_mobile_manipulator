@@ -75,6 +75,30 @@ int main(int argc, char** argv) {
     Eigen::Vector3d position(1.0, 1.0, 1.0); //
     Eigen::Quaterniond orientation(1.0, 0.0, 0.0, 0.0); // w x y z
 
+    // parser command line arguments
+    for (int i = 1; i < argc; ++i) {
+        std::string arg = argv[i];
+        if (arg.find("position") == 0) {
+            position.x() = (i + 1 < argc) ? std::atof(argv[++i]) : 0.0;
+            position.y() = (i + 1 < argc) ? std::atof(argv[++i]) : 0.0;
+            position.z() = (i + 1 < argc) ? std::atof(argv[++i]) : 1.0;
+        } else if (arg.find("orientation") == 0) {
+            orientation.w() = (i + 1 < argc) ? std::atof(argv[++i]) : 1.0;
+            orientation.x() = (i + 1 < argc) ? std::atof(argv[++i]) : 0.0;
+            orientation.y() = (i + 1 < argc) ? std::atof(argv[++i]) : 0.0;
+            orientation.z() = (i + 1 < argc) ? std::atof(argv[++i]) : 0.0;
+        }
+    }
+
+    ROS_INFO("position: %f %f %f", position.x(), position.y(), position.z());
+    ROS_INFO("orientation: %f %f %f %f", orientation.w(), orientation.x(), orientation.y(), orientation.z());
+
+    // check if orientation is valid
+    if (std::abs(orientation.norm() - 1.0) > 1e-6) {
+        ROS_ERROR("Invalid orientation: %f %f %f %f", orientation.w(), orientation.x(), orientation.y(), orientation.z());
+        return -1;
+    }
+
     ocs2::PoseToTargetTrajectoriesPublisher publisher(nodeHandle, "mobile_manipulator", &poseToTargetTrajectories);
     publisher.publishPoseCommand(position, orientation);
     return 0;
