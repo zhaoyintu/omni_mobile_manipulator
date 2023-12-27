@@ -1,0 +1,23 @@
+<launch>
+    <!-- Enable rviz visualization -->
+    <arg name="rviz"        default="true" />
+    <!-- Set nodes on debug mode -->
+    <arg name="debug"       default="false" />
+
+    <!-- The URDF model of the robot -->
+    <!-- <arg name="urdfFile"    value="$(find ocs2_robotic_assets)/resources/mobile_manipulator/mabi_mobile/urdf/mabi_mobile.urdf" /> -->
+    <arg name="urdfFile"    value="$(find omni_mobile_manipulator)/urdf/qxrobot_mm.urdf" />
+    <!-- The task file for the mpc. -->
+    <!-- <arg name="taskFile"    value="$(find ocs2_mobile_manipulator)/config/mabi_mobile/task.info" /> -->
+    <arg name="taskFile"    value="$(find omni_mobile_manipulator)/config/task.info" />
+    <!-- The library folder to generate CppAD codegen into -->
+    <arg name="libFolder"   value="$(find omni_mobile_manipulator)/auto_generated/omni_mobile_manipulator" />
+
+    <include file="$(find omni_mobile_manipulator)/launch/mobile_manipulator.launch">
+        <arg name="rviz"      value="$(arg rviz)" />
+        <arg name="debug"     value="$(arg debug)" />
+        <arg name="urdfFile"  value="$(arg urdfFile)" />
+        <arg name="taskFile"  value="$(arg taskFile)" />
+        <arg name="libFolder" value="$(arg libFolder)" />
+    </include>
+</launch>
