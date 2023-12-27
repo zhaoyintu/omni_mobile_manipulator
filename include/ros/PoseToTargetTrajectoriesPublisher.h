@@ -35,10 +35,11 @@ class PoseToTargetTrajectoriesPublisher {
         PoseToTargetTrajectories poseToTargetTrajectoriesFun_;
 
         std::unique_ptr<TargetTrajectoriesRosPublisher> targetTrajectoriesPublisherPtr_;
-
         ::ros::Subscriber observationSubscriber_;
         mutable std::mutex latestObservationMutex_;
         SystemObservation latestObservation_;
+
+        bool newObservationReceived_ = false;
 };
 
 } // namespace ocs2

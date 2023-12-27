@@ -1,20 +1,28 @@
 #include "ros/PoseToTargetTrajectoriesPublisher.h"
 
-// namespace ocs2 {
+namespace ocs2 {
 
-PoseToTargetTrajectoriesPublisher::PoseToTargetTrajectoriesPublisher(::ros::NodeHandle& nodeHandle, const std::string& topicPrefix,
-                                                                         PoseToTargetTrajectories PoseToTargetTrajectories)
+PoseToTargetTrajectoriesPublisher::PoseToTargetTrajectoriesPublisher(
+    ::ros::NodeHandle& nodeHandle, 
+    const std::string& topicPrefix,
+    PoseToTargetTrajectories PoseToTargetTrajectories)
     : poseToTargetTrajectoriesFun_(std::move(PoseToTargetTrajectories)) {
 
   // observation subscriber
   auto observationCallback = [this](const ocs2_msgs::mpc_observation::ConstPtr& msg) {
     std::lock_guard<std::mutex> lock(latestObservationMutex_);
     latestObservation_ = ros_msg_conversions::readObservationMsg(*msg);
+    newObservationReceived_ = true;
+    ROS_INFO("Get latest observation");
   };
+
+  std::string output_topic = topicPrefix + "_mpc_observation";
+  ROS_INFO(output_topic.c_str());
   observationSubscriber_ = nodeHandle.subscribe<ocs2_msgs::mpc_observation>(topicPrefix + "_mpc_observation", 1, observationCallback);
 
   // Trajectories publisher
   targetTrajectoriesPublisherPtr_.reset(new TargetTrajectoriesRosPublisher(nodeHandle, topicPrefix));
+  ROS_INFO("publisher initialized");
 }
 
 /******************************************************************************************************/
@@ -22,36 +30,30 @@ PoseToTargetTrajectoriesPublisher::PoseToTargetTrajectoriesPublisher(::ros::Node
 /******************************************************************************************************/
 void PoseToTargetTrajectoriesPublisher::publishPoseCommand(const Eigen::Vector3d& position, const Eigen::Quaterniond& orientation) {
   // get the latest observation
-  SystemObservation observation;
-  {
-    std::lock_guard<std::mutex> lock(latestObservationMutex_);
-    observation = latestObservation_;
+  while (ros::ok() && ros::master::check() && !newObservationReceived_) {
+
+    ::ros::spinOnce();
+    SystemObservation observation;
+    {
+      std::lock_guard<std::mutex> lock(latestObservationMutex_);
+      observation = latestObservation_;
+    }
+
+    // get TargetTrajectories
+    if (newObservationReceived_) {
+      const auto targetTrajectories = poseToTargetTrajectoriesFun_(position, orientation, observation);
+      // publish TargetTrajectories
+      targetTrajectoriesPublisherPtr_->publishTargetTrajectories(targetTrajectories);
+    }
   }
-
-  // get TargetTrajectories
-  const auto targetTrajectories = poseToTargetTrajectoriesFun_(position, orientation, observation);
-
-  // publish TargetTrajectories
-  targetTrajectoriesPublisherPtr_->publishTargetTrajectories(targetTrajectories);
 }
 
-// } // namespace ocs2
+} // namespace ocs2
 
 
 TargetTrajectories poseToTargetTrajectories(const Eigen::Vector3d& position, 
                                             const Eigen::Quaterniond& orientation,
                                             const SystemObservation& observation) {
-    // ocs2::scalar_array_t timeTrajectory;
-    // timeTrajectory.push_back(observation.time);
-
-    // ocs2::vector_array_t stateTrajectory;
-    // Eigen::VectorXd state(7); 
-    // state << position, orientation.coeffs();
-    // stateTrajectory.push_back(state);
-
-    // ocs2::vector_array_t inputTrajectory;
-    // inputTrajectory.push_back(Eigen::VectorXd::Zero(observation.input.size()));
-
     // time trajectory
     const scalar_array_t timeTrajectory{observation.time};
     // state trajectory: 3 + 4 for desired position vector and orientation quaternion
@@ -69,13 +71,11 @@ int main(int argc, char** argv) {
     ::ros::init(argc, argv, "mobile_manipulator_pose_publisher");
     ::ros::NodeHandle nodeHandle;
 
-    ocs2::PoseToTargetTrajectoriesPublisher publisher(nodeHandle, "mobile_manipulator", &poseToTargetTrajectories);
-
-    // sample 
-    Eigen::Vector3d position(1.0, 0.0, 0.0); //
+      // sample 
+    Eigen::Vector3d position(1.0, 1.0, 1.0); //
     Eigen::Quaterniond orientation(1.0, 0.0, 0.0, 0.0); // w x y z
-    ros::spinOnce();
-    // publish
+
+    ocs2::PoseToTargetTrajectoriesPublisher publisher(nodeHandle, "mobile_manipulator", &poseToTargetTrajectories);
     publisher.publishPoseCommand(position, orientation);
     return 0;
 }
